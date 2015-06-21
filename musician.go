@@ -22,7 +22,6 @@ var (
 	globalFlags   = struct {
 		debug    bool
 		version  bool
-		dep      string
 		filename string
 	}{}
 
@@ -33,7 +32,6 @@ var (
 func init() {
 	globalFlagset.BoolVar(&globalFlags.debug, "debug", false, "Print out more debug information to stderr")
 	globalFlagset.BoolVar(&globalFlags.version, "version", false, "Print the version and exit")
-	globalFlagset.StringVar(&globalFlags.dep, "dep", "", "Dependency to request data from")
 	globalFlagset.StringVar(&globalFlags.filename, "filename", "", "Filename to play when requested to start")
 }
 
