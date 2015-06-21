@@ -2,11 +2,13 @@ FROM teemow/arch
 
 RUN pacman -Sy
 RUN pacman -Syu --noconfirm
+RUN pacman -Sy --noconfirm vlc jack2
+# WARNING, horrible hack to enable vlc to run as root!
+RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
 
-COPY leiningen-1:2.5.1-1-any.pkg.tar.xz leiningen-1:2.5.1-1-any.pkg.tar.xz
-RUN pacman --noconfirm -U leiningen-1:2.5.1-1-any.pkg.tar.xz
-COPY . /musician 
+RUN pacman -Sy --noconfirm mplayer
 
 WORKDIR /musician
-RUN lein deps
-CMD lein run
+COPY . /musician
+COPY startup.sh startup.sh
+ENTRYPOINT ["./startup.sh"]
