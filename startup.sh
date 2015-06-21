@@ -4,4 +4,5 @@ jackd -R -d net &
 
 sleep 2 
 
-mplayer -ao jack $1
+echo starting orchestra-musician to wait for conductor
+/musician/orchestra-musician
